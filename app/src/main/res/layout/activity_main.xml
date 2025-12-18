@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/desert_road"
+    tools:context=".MainActivity">
+
+        <!-- Hearts row -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/main_LAY_hearts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/main_IMG_heart0"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:srcCompat="@drawable/pixel_heart" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/main_IMG_heart1"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="4dp"
+                    app:srcCompat="@drawable/pixel_heart" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/main_IMG_heart2"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="4dp"
+                    app:srcCompat="@drawable/pixel_heart" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Button right -->
+        <ImageButton
+            android:id="@+id/main_BTN_right"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/button_right"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrow_right"
+            app:tint="@color/white" />
+        <!-- Button left -->
+        <ImageButton
+            android:id="@+id/main_BTN_left"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="50dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/button_left"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrow_left"
+            app:tint="@color/white" />
+        <!-- Cars row -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/main_LAYOUT_cars"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_above="@id/main_BTN_left"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/Col_0_Car"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/yellow_car"
+                    android:visibility="invisible" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/Col_1_Car"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/yellow_car"
+                    android:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/Col_2_Car"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/yellow_car"
+                    android:visibility="invisible" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- Obstacles grid -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/main_LAY_hearts"
+            android:layout_above="@id/main_LAYOUT_cars"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+                <!-- Column 0 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/main_LAYOUT_obstacles0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_00"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_01"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_02"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_03"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_04"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_05"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <!-- Column 1 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/main_LAYOUT_obstacles1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_10"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_11"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_12"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_13"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_15"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+                <!-- Column 2 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/main_LAYOUT_obstacles2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_20"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_21"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_22"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_23"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_24"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/main_IMG_obstacle_25"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/boulder"
+                            android:visibility="invisible" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

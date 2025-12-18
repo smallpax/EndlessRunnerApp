@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EndlessRunnerGame</string>
+    <string name="button_right">button right</string>
+    <string name="button_left" />
+</resources>
