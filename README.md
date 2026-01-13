@@ -1,88 +1,114 @@
-# Endless Runner Car Game – Android (Kotlin)
+# EndlessRunnerGame – Android (Kotlin)
 
-This project is an Android endless-runner car game developed in Kotlin.
-The goal of the project is to practice clean separation between **game logic** and **UI**, while integrating common mobile capabilities such as **sensors / buttons controls**, **sound**, **vibration**, **persistent leaderboard storage**, and **Google Maps**.
+An Android endless-runner car game written in **Kotlin**, built with a clean separation between **data models**, **game logic**, **input controllers**, and **UI**.  
+The player moves between lanes to avoid obstacles and collect **collectables**. Scores are saved locally and displayed in a **Top-10 leaderboard**. A **Google Maps** screen is included for location-based score viewing.
 
-The player drives along a multi-lane road, avoids obstacles, and collects **collectables** (coins). The score increases over time and via collectables, and the best runs are stored and displayed in a Top-10 leaderboard.
-
-* * *
-
-## Project Description
-
-The game is structured to keep the core gameplay rules and state management independent from Activities/Views.
-System resources (audio, vibration, sensors, location permissions) are handled in dedicated utility components to keep lifecycle handling safe and predictable.
-
-The project includes multiple screens (landing/menu, gameplay, leaderboard, map preview), persistent score storage, and feedback mechanisms such as sound and vibration.
-
-* * *
+---
 
 ## Main Features
 
-- Endless runner gameplay on a multi-lane road
-- Player movement left/right across lanes (buttons and/or tilt, depending on your configuration)
-- Obstacles spawning and collision handling with **lives**
-- **Collectables** spawning and scoring
-- Background music + sound effects
-- Vibration feedback on hits / events
-- Persistent **Top-10** leaderboard (no database required)
-- Navigation across multiple Activities and (optionally) Fragments
-- Google Maps integration for score location / map preview
+- Multi-lane endless runner gameplay
+- Lane switching via:
+  - On-screen **buttons**
+  - **Tilt** controls (accelerometer) via `TiltDetector`
+- Obstacles + collision handling with lives / game over flow
+- **Collectables** system (coin-style pickups)
+- Persistent **Top-10** leaderboard (local storage; no database)
+- Google Maps integration (map fragment)
 
-* * *
+---
 
 ## Project Structure
 
-> Package names below match a typical clean Android game structure. Adjust them to your exact project packages.
+Package root:
+`com.example.endlessrunnergame`
 
 ### `data`
+Data models and persistence helpers.
 
-Responsible for models and persistence:
+- `data/game`
+  - `CellType` – represents cell content in the game grid
+  - `GameConfig` – configuration (lanes, rows, speed, lives, etc.)
+  - `GameEvents` – game events (collisions, collectables, game over, etc.)
+  - `GameSnapshot` – immutable view of the current game state (for UI rendering)
+- `data/leaderboard`
+  - `LeaderboardEntry` – a single leaderboard record
+  - `LeaderboardStorage` – save/load top scores
+- `data/player`
+  - `PlayerPrefs` – player settings/preferences (e.g., name, mode)
 
-- `player/PlayerPrefs` – stores player name / settings
-- `leaderboard/LeaderboardEntry` – score record model (name, score, timestamp, optional lat/lon)
-- `leaderboard/LeaderboardStorage` – saving/loading Top-10 scores (SharedPreferences / JSON)
+---
 
-* * *
+### `interfaces`
+Interfaces that decouple input from gameplay.
+
+- `Controller` – unified input API for the game (buttons/tilt)
+- `TiltCallback` – callback used by `TiltDetector` to report tilt values
+
+---
 
 ### `logic`
+Pure gameplay rules and state management.
 
-Core game rules and state:
+- `logic/game`
+  - `GameManager` – core engine:
+    - updates ticks
+    - spawns obstacles / collectables
+    - handles collisions and scoring
+    - produces `GameSnapshot` for the UI
+- `logic/input`
+  - `ButtonsController` – button-driven controller implementation
+  - `ControlMode` – defines which control scheme is active
+  - `TiltDetector` – accelerometer-based input detector
 
-- `game/GameManager` – game state, ticks, spawn rules, scoring, collisions, lives, game over
-- `game/GameConfig` – lanes/rows/tick speed, difficulty parameters
-- `input/ControlMode` – buttons vs tilt (if supported)
-- `input/TiltDetector` – accelerometer listener and normalization (if supported)
+---
 
-* * *
+### `fragments`
+Reusable UI components.
+
+- `fragments/MapFragment` – Google Maps fragment screen for viewing locations
+
+---
 
 ### `ui`
+Activities and UI adapters.
 
-User interface layer:
+- `ui/landing`
+  - `LandingActivity` – entry screen (name, mode selection, navigation)
+- `ui/main`
+  - `MainActivity` – gameplay screen (renders snapshot, handles HUD)
+- `ui/leaderboard`
+  - `LeaderboardActivity` – top scores screen
+  - `TopTenAdapter` – RecyclerView adapter for leaderboard rows
 
-- `landing/LandingActivity` – player name, control mode selection, start game, open leaderboard
-- `main/MainActivity` – gameplay screen, rendering grid, HUD updates (score/lives/collectables)
-- `leaderboard/LeaderboardActivity` – Top-10 scores list + map / details navigation
-
-* * *
+---
 
 ### `utilities`
+Cross-cutting utilities.
 
-Cross-cutting helpers:
+- `utilities/location`
+  - (location-related helpers live here)
+- `SoundPlayer` – plays sound effects / music (depending on your implementation)
+- `VibrationUtil` – vibration feedback helper
 
-- `SoundPlayer` / `SoundManagerAudio` – background music and SFX
-- `VibrationUtil` – vibration feedback
-- `location/LocationProvider` – location retrieval (optional)
-- `permissions/PermissionHelper` – runtime permissions (location, etc.)
+---
 
-* * *
+## Layout Resources
+
+Located under `app/src/main/res/layout`:
+
+- `landing_page_activity.xml`
+- `activity_main.xml`
+- `activity_leaderboard.xml`
+- `leaderboard_row.xml`
+- `fragment_maps.xml`
+
+---
 
 ## Google Maps API Key Setup
 
-This project uses Google Maps features that require an API key.
-For security reasons, the API key should **not** be committed into the repository.
+This project includes a Google Maps fragment (`MapFragment`) and requires an API key.
 
-### Configure the API key
+Recommended approach (do not commit keys):
 
-1. Open (or create) the file `local.properties` in the root directory of the project.
-2. Add the following line:
-
+1. Add your key to `local.properties` (project root):
