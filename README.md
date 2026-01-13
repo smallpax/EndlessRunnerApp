@@ -104,11 +104,10 @@ Located under `app/src/main/res/layout`:
 - `fragment_maps.xml`
 
 ---
+## Google Maps API Key
 
-## Google Maps API Key Setup
+This project uses Google Maps.
+To run it, add your own API key to:
 
-This project includes a Google Maps fragment (`MapFragment`) and requires an API key.
+res/values/google_maps_api.xml
 
-Recommended approach (do not commit keys):
-
-1. Add your key to `local.properties` (project root):
